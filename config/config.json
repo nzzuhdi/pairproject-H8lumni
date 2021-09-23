@@ -4,7 +4,8 @@
     "password": "postgres",
     "database": "h8lumni",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "port": "5433"
   },
   "test": {
     "username": "root",
