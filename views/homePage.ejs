@@ -1,54 +1,51 @@
 <%- include("./partials/header") %>
 
-     <style>
-      .form-signin {
-        width: 100%;
-        max-width: 330px;
-        padding: 15px;
-        margin: 0 auto;
-      }
-      .form-signin .checkbox {
-        font-weight: 400;
-      }
-      .form-signin .form-control {
-        position: relative;
-        box-sizing: border-box;
-        height: auto;
-        padding: 10px;
-        font-size: 16px;
-      }
-      .form-signin .form-control:focus {
-        z-index: 2;
-      }
-      .form-signin input[type="email"] {
-        margin-bottom: -1px;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-      .form-signin input[type="password"] {
-        margin-bottom: 10px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-      }
-     </style>
+<div class="container mt-5">
 
-<body>
-   <br> <h1  class="d-flex justify-content-center">H8LUMNI</h1><br>
-<!--     
-    <a href="/h8lumni/profiles">profiles</a>
-    <a href="/h8lumni/shares">shares</a> -->
-    <br><br>
-    <div class="d-flex justify-content-center">
-      <form action="/H8lumni/home" method="POST">
-        <label for="content">Whatsup ur day?</label>
-        <input type="text" value="" name="content"><button type="submit" value="submit">Post!</button>
-      </form>
+    <div class="row">
+        <div class="col-3">
+            <img src="<%= userData.userImage %>" alt="" style="width: 80%;" class="px-3">
+            <h2 class="mt-4 ml-3"><%= userData.username %></h2>
+    
+            <!-- <a href="/h8lumni/profiles" class="btn">profiles</a>
+            <a href="/h8lumni/shares" class="btn">shares</a> -->
+        </div>
+
+        <div class="col-9 pt-2">
+            <div style="overflow: hidden;margin-bottom: 30px;padding:16px;background-color: #c7caca;border-radius: 2px;">
+                <form action="/home" method="POST">
+                    <div class="form-group shadow-textarea">
+                        <label for="exampleFormControlTextarea6">Whatsup ur day?</label>
+                        <textarea name="content" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write something here..."></textarea>
+                    </div>
+
+                    <button type="submit" value="submit" class="btn btn-dark float-right">Post</button>
+                </form>
+            </div>
+            <div style="margin-top: 40px;">
+            <% data.forEach(post => {%>
+                <div style="border-top: 1px solid #555; padding:25px;">
+                    <div class="row">
+                        <div class="col-1" style="padding:0;">
+                            <a href="/profile/<%= post.User.username %>" class="plain-link"><img src="<%= post.User.Profile.image %>" alt="user-image" style="width: 100%;"></a>
+                        </div>
+                        <div class="col-11">
+                            <a href="/profile/<%= post.User.username %>" class="plain-link"><strong><%= post.User.Profile.fullname %></strong></a> <span class="mx-2">·</span><span style="color: #777;"><%= post.elapsedTime() %></span>
+                            <p> <%= post.content %></p>
+                        </div>
+                    </div>
+
+                </div>
+                
+               
+            <%}); %>
+            <br>
+            <br>    
+            </div>
+        </div>
     </div>
-      <% data.forEach(el => {%>
-        <br>
-        <p class="d-flex justify-content-center"> <%= el.content %>
-          <%}); %> </p>
-          
-          
-</body>
-</html>
+   
+   
+</div>
+
+<%- include("./partials/footer") %>

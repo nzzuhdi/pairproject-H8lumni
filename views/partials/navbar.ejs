@@ -1,38 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">H8lumni</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="/H8lumni/home">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/H8lumni/shares">Sharing</a>
-        </li>
-        </ul>
+    <div class="container">
+        <a class="navbar-brand" href="#">H8lumni</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/shares">Sharing</a>
+            </li>
+            </ul>
 
-        <% if (userData.isLogedIn) { %>
-        <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= userData.username %>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0;left: auto;padding-left: 1px;padding-right: 1px;">
-                <a class="dropdown-item" href="/profile/<%= userData.username %>">My Profile</a>
-                <a class="dropdown-item" href="/profile/<%= userData.username %>/edit">Edit Profile</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/logout">Logout</a>
+            <% if (userData.isLogedIn) { %>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="<%= userData.userImage %>" alt="" style="height: 40px;margin-right: 12px;border-radius: 35px;">
+                    <span style="color: #000;font-size: 18px;font-weight: 500;"><%= userData.username %></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0;left: auto;padding-left: 1px;padding-right: 1px;">
+                    <a class="dropdown-item" href="/profile/<%= userData.username %>">My Profile</a>
+                    <a class="dropdown-item" href="/profile/<%= userData.username %>/edit">Edit Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                    
                 </div>
-                
-            </div>
-        <% } else { %>
-            <a href="/login" class="mx-4">Log In</a>
-            <a href="/register" class="mr-5">Register</a>
-        <% } %> 
-       
+            <% } else { %>
+                <a href="/login" class="mx-4">Log In</a>
+                <a href="/register" class="mr-5">Register</a>
+            <% } %> 
+        
 
 
+        </div>
     </div>
   </nav>

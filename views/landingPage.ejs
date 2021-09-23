@@ -1,49 +1,31 @@
-<%- include("./partials/header") %>
-
-     <style>
-      .form-signin {
-        width: 100%;
-        max-width: 330px;
-        padding: 15px;
-        margin: 0 auto;
-      }
-      .form-signin .checkbox {
-        font-weight: 400;
-      }
-      .form-signin .form-control {
-        position: relative;
-        box-sizing: border-box;
-        height: auto;
-        padding: 10px;
-        font-size: 16px;
-      }
-      .form-signin .form-control:focus {
-        z-index: 2;
-      }
-      .form-signin input[type="email"] {
-        margin-bottom: -1px;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-      .form-signin input[type="password"] {
-        margin-bottom: 10px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-      }
-      </style>
-<div class="bg-image" style="background-image: url('http://www.responsemagic.com/aeImages/m/makegreen/Helping%20People.jpeg'); height: 100vh">
-    
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>H8lumni</title>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
     <body>
-        <br> <h1  class="d-flex justify-content-center">H8LUMNI</h1><br>
-        <!--     
-            <a href="/h8lumni/profiles">profiles</a>
-            <a href="/h8lumni/shares">shares</a> -->
-            <br><br>
-            <div class="d-flex justify-content-center">
-                <p> For the better of Hactiv8 Citizen's</p>
+        <div>
+            <div class="jumbotron jumbotron-fluid text-center">
+                
+                <div class="container">
+                    <h1>WELCOME TO H8lumni</h1>
+                    <div class="mb-5">
+                        "Everyone should learn how to code, it teaches you how to think"- Jobs 
+                    </div>
+                    <a href="/login" class="btn btn-primary">login</a>
+                    <a href="/register" class="btn btn-secondary">register</a>
+                </div>
             </div>
+            <img class="bg-img" src="http://www.responsemagic.com/aeImages/m/makegreen/Helping%20People.jpeg" alt="">
+        </div>
+            <%- include("./partials/footer") %>
             
-            
-        </body>
-    </div>
-</html>

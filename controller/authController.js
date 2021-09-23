@@ -13,7 +13,8 @@ class AuthController {
         const {email, password} = req.body;
 
         User.findAll({
-            where: { email }
+            where: { email },
+            include: Profile
         })
         /*
         TODO: set email constrain to unique
@@ -23,9 +24,12 @@ class AuthController {
             if(passwordIsMatched(password, data[0].password)) {
                 req.session.userId = data[0].id;
                 req.session.username = data[0].username;
+                req.session.userImage = data[0].Profile.image;
                 req.session.logedIn = true;
+                console.log("=====================");
+                console.log(data[0].Profile);
 
-                res.redirect("/H8lumni/home");
+                res.redirect("/home");
             } else {
                 res.redirect("/login?errors=wrong_password");
             }
@@ -43,7 +47,7 @@ class AuthController {
     }
 
     static postRegister(req, res) {
-        const {username, email, password, age, gender, image, batch} = req.body;
+        const {fullname, username, email, password, age, gender, image, batch} = req.body;
         const input = {
             username,
             email,
@@ -56,8 +60,13 @@ class AuthController {
          console.log(input);
 
         User.create(input)
-        .then(() => {
-            Profile.create()
+        .then(data => {
+            // console.log(`new data =============`);
+            // console.log(data);
+            return Profile.create({
+                fullname,
+                UserId: data.id
+            })
         })
         .then(() => {
             res.redirect("/login");

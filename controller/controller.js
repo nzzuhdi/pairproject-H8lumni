@@ -1,5 +1,5 @@
 
-const {Post, Profile, User,Share} = require("../models");
+const {Post, Profile, User, Share} = require("../models");
 const { Op } = require("sequelize");
 
 class Controller{
@@ -7,44 +7,47 @@ class Controller{
         res.render('landingPage')
     }
 
-    static addUser(req,res){
-        res.render('addUser')
-    }
-
     static homePage(req,res){
-        // let option = {
-        //     include: [User,Profile,Post],
-        // }
-        console.log();
-        Post.findAll({
-            order: [['createdAt','desc']]
-        })
+        const opt = {
+            include: [{
+                model: User,
+                include: [{
+                    model: Profile
+                }]
+            }],
+            order: [["createdAt", "DESC"]]
+        }
+
+        Post.findAll(opt)
         .then(data=>{
             // console.log(data);
             res.render('homePage', {data})
         })
         .catch(err =>{
+            console.log(err);
             res.send(err)
         })
     }
 
     static addPost(req,res){
-        const {content} = req.body 
-        Post.create(req.body)
+        const {content} = req.body
+        const input = {
+            content, UserId: req.session.userId
+        } 
+        Post.create(input)
         .then(()=>{
-            res.redirect('/H8lumni/home')
+            res.redirect('/home')
         })
         .catch((err)=>{
             res.send (err)
         })
     }
-
-    static profilePage(req,res){
-        res.render('profiles')
-    }
     
     static sharesPage(req,res){
-        Share.findAll()
+        Share.findAll({
+            include: User,
+            order: [["createdAt", "DESC"]]
+        })
         .then(data=>{
             res.render('sharesPage',{data})
         })
@@ -52,17 +55,26 @@ class Controller{
             res.send(err)
         })
     }
+
     static addShares(req,res){
         res.render('addShares')
     }
+
     static postAddShares(req,res){
-        const{content} = req.body
-        console.log(req.body);
-        Share.create(req.body)
+        const UserId = req.session.userId;
+        const{title, content} = req.body;
+        const input = {
+            title,
+            content,
+            UserId
+        }
+        console.log("share input:", input);
+        Share.create(input)
         .then(()=>{
-            res.redirect('/H8lumni/shares')
+            res.redirect('/shares')
         })
       .catch((err)=>{
+          console.log(err);
           res.send(err)
       })
     }
@@ -72,14 +84,149 @@ class Controller{
         const id = req.params.postId;
         console.log(id);
 
-        Share.findAll()
+        Share.findByPk(id,{
+            include: [{
+                model: User,
+                include: [{
+                    model: Profile
+                }]
+            }]
+        })
         .then(data => {
             console.log(data);
-            res.render('postPage', {data})
+            res.render('sharePostPage', {data})
         })
         .catch(err => {
             res.send(err)
         });
+    }
+
+    static profile(req, res) {
+        const username = req.params.username;
+
+        User.findOne({
+            where: {
+                username
+            },
+            include: [Profile, Share]
+        })
+        .then(data => {
+            console.log(data);
+            res.render("profile", {data});
+        })
+        .catch(err => {
+            res.send(err);
+        })
+    }
+
+
+    static editProfile(req, res) {
+        const username = req.params.username;
+
+        console.log('ini laman edit');
+        User.findOne({
+            where: {
+                username
+            },
+            include: [Profile, Share]
+        })
+        .then(data => {
+            res.render("profile/edit", {data});
+        })
+        .catch(err => {
+            res.send(err);
+        })
+    }
+
+    static postEditProfile(req, res) {
+        
+        const username = req.params.username;
+        const id = Profile.UserId
+        const{fullname, email, age, gender, image, batch} = req.body;
+        const input = {
+            fullname,
+            age: Number(age),
+            gender,
+            batch: Number(batch),
+            image,
+            email
+        }
+        
+        console.log("profile input:", input,id);
+        Profile.update(
+           input,{
+               where:{
+                   UserId: req.session.userId
+               },
+               include: [User]
+            }
+        )
+        .then((data) => {
+            // console.log(data);
+            res.redirect(`/profile/${username}`);
+        })
+        .catch(err => {
+            res.send(err);
+        })
+
+
+       
+    }
+
+
+    static editSharePost(req, res) {
+        const id = req.params.postId;
+        let dataEdit;
+        
+        Share.findOne({
+            where: { id }
+        })
+        .then((data) => {
+            res.render(`editShare`,{data});
+        })
+        .catch(err => {
+            res.send(err);
+        })
+    }
+    static postEditShare(req, res) {
+       
+        const UserId = Number(req.params.postId);
+        const{title, content} = req.body;
+        const input = {
+            title,
+            content
+        }
+        
+        console.log("share input:", input, UserId);
+        Share.update(
+           input,{
+                where:{
+                    id:UserId
+                }
+            }
+        )
+        .then((data) => {
+            console.log(data);
+            res.redirect(`/shares/${UserId}`);
+        })
+        .catch(err => {
+            res.send(err);
+        })
+
+    }
+
+    static deleteSharePost(req, res) {
+        const id = req.params.postId;
+
+        Share.destroy({
+            where: { id }
+        })
+        .then(() => {
+            res.redirect(`/profile/${req.session.username}`);
+        })
+        .catch(err => {
+            res.send(err);
+        })
     }
 }
 
