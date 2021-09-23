@@ -57,8 +57,9 @@ class AuthController {
 
         User.create(input)
         .then(() => {
-
-
+            Profile.create()
+        })
+        .then(() => {
             res.redirect("/login");
         })
         .catch(err => {
