@@ -1,26 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>H8LUMNI</h1><br>
-    
-    <a href="/h8lumni/profiles">profiles</a>
-    <a href="/h8lumni/shares">shares</a>
-    <br><br>
-    <form action="/H8lumni/home" method="POST">
-        <label for="content">Whatsup ur day?</label>
-        <input type="text" value="" name="content"><button type="submit" value="submit">Post!</button>
-    </form>
-    <% data.forEach(el => {%>
+<%- include("./partials/header") %>
 
-       <p> <%= el.content %>
-    <%}); %> </p><br>
-    <br>
-    <br>
-</body>
-</html>
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-3">
+            <img src="<%= userData.userImage %>" alt="" style="width: 80%;" class="px-3">
+            <h2 class="mt-4 ml-3"><%= userData.username %></h2>
+    
+            <!-- <a href="/h8lumni/profiles" class="btn">profiles</a>
+            <a href="/h8lumni/shares" class="btn">shares</a> -->
+        </div>
+
+        <div class="col-9 pt-2">
+            <div style="overflow: hidden;margin-bottom: 30px;padding:16px;background-color: #c7caca;border-radius: 2px;">
+                <form action="/home" method="POST">
+                    <div class="form-group shadow-textarea">
+                        <label for="exampleFormControlTextarea6">Whatsup ur day?</label>
+                        <textarea name="content" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write something here..."></textarea>
+                    </div>
+
+                    <button type="submit" value="submit" class="btn btn-dark float-right">Post</button>
+                </form>
+            </div>
+            <div style="margin-top: 40px;">
+            <% data.forEach(post => {%>
+                <div style="border-top: 1px solid #555; padding:25px;">
+                    <div class="row">
+                        <div class="col-1" style="padding:0;">
+                            <a href="/profile/<%= post.User.username %>" class="plain-link"><img src="<%= post.User.Profile.image %>" alt="user-image" style="width: 100%;"></a>
+                        </div>
+                        <div class="col-11">
+                            <a href="/profile/<%= post.User.username %>" class="plain-link"><strong><%= post.User.Profile.fullname %></strong></a> <span class="mx-2">·</span><span style="color: #777;"><%= post.elapsedTime() %></span>
+                            <p> <%= post.content %></p>
+                        </div>
+                    </div>
+
+                </div>
+                
+               
+            <%}); %>
+            <br>
+            <br>    
+            </div>
+        </div>
+    </div>
+   
+   
+</div>
+
+<%- include("./partials/footer") %>

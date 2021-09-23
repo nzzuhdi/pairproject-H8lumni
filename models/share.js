@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Share.belongsTo(models.User);
     }
   };
   Share.init({

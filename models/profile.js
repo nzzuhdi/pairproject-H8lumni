@@ -11,10 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Profile.belongsTo(models.User);
     }
   };
   Profile.init({
-    fullName: {
+    fullname: {
       type: DataTypes.STRING,
     validate:{
       notEmpty: {msg:"fill the name~"}
@@ -37,6 +38,11 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     UserId: DataTypes.INTEGER
   }, {
+    hooks: {
+      beforeCreate: (instance, options) => {
+        if(!instance.image) instance.image = "/images/no_image.png";
+      }
+    },
     sequelize,
     modelName: 'Profile',
   });

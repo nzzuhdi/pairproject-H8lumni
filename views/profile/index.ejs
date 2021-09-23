@@ -2,19 +2,48 @@
 
 <div class="container mt-5">
     <div class="row">
-        <div class="col-4">
-            <img src="" alt="profile-img">
+        <div class="col-3">
+            <img src="<%= data.Profile.image %>" alt="profile-img" style="width: 100%;" class="px-2">
         </div>
 
-        <div class="col-8">
-            <h1>Full Name</h1>
-            <h2>username</h2>
-
-            <div class="mt-5">
-                <h5>age: 10</h5>
-                <h5>gender: Male</h5>
-                <h5>batch: 15</h5>
+        <div class="col-9">
+            <h2 class="mb-4"><%= data.Profile.fullname %></h2>
+            <div class="row">
+                <div class="col-3">
+                    <strong>Full Name</strong><br> 
+                    <strong>Username</strong><br>      
+                    <strong>Age</strong><br>           
+                    <strong>Gender</strong><br>        
+                    <strong>Hacktiv8 Batch</strong><br>
+                </div>
+                <div class="col-9">
+                    :<span class="ml-3"><%= data.Profile.fullname %></span><br>
+                    :<span class="ml-3"><%= data.username %></span><br>
+                    :<span class="ml-3"><%= (data.Profile.age)?data.Profile.age:"not set" %></span><br>
+                    :<span class="ml-3"><%= (data.Profile.gender)?data.Profile.gender:"not set" %></span><br>
+                    :<span class="ml-3"><%= (data.Profile.batch)?data.Profile.batch:"not set" %></span><br>
+                </div>
             </div>
+                   
+        </div>
+
+        <div>
+            <table>
+                <tr>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>action</th>
+                </tr>
+                <% data.Shares.forEach((share, index) => { %>
+                <tr>
+                    <td><%= index + 1%></td>
+                    <td><%= share.title %></td>
+                    <td><%= share.createdAt %></td>
+                    <td><a href="/shares/<%= share.id %>/edit">edit</a><a href="/shares/<%= share.id %>/delete">delete</a></td>
+                </tr>
+                <% }) %>
+            </table>
         </div>
     </div>
 
