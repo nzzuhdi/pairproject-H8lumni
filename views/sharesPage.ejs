@@ -1,28 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<%- include("./partials/header") %>
+
+     <style>
+      .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+      }
+      .form-signin .checkbox {
+        font-weight: 400;
+      }
+      .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .form-signin .form-control:focus {
+        z-index: 2;
+      }
+      .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+     </style>
 <body>
     <h1>H8LUMNI</h1>
 
     <br><br>
     <a href="/h8lumni/addShares"><button>Add New Shares!</button></a>
     <br>
-    <table >
-        <thead >
-            <tr>
+    <table border="1">
+        <thead border="1" >
+            <th>
                 No
-            </tr>
-            <tr>Title</tr>
-            <tr>Alumnus</tr>
+            </th>
+            <th>Title</th>
+            <th>Alumnus</th>
         </thead>
         <tbody>
-            <% data.forEach(el => {%>
-                <td><%= el.content %></td>
+            <% data.forEach((el,i) => {%>
+                <td><%= i+1 %> </td>
+                <td><a href="/H8lumni/sharesContent"><%= el.title%></a></td>
+                <td><%# el.User.username %> </td>
                 
              <%}); %> <br>
         </tbody>

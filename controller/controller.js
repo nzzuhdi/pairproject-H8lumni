@@ -15,9 +15,12 @@ class Controller{
         // let option = {
         //     include: [User,Profile,Post],
         // }
-        Post.findAll()
+        console.log();
+        Post.findAll({
+            order: [['createdAt','desc']]
+        })
         .then(data=>{
-            console.log(data);
+            // console.log(data);
             res.render('homePage', {data})
         })
         .catch(err =>{
@@ -54,6 +57,7 @@ class Controller{
     }
     static postAddShares(req,res){
         const{content} = req.body
+        console.log(req.body);
         Share.create(req.body)
         .then(()=>{
             res.redirect('/H8lumni/shares')
@@ -66,9 +70,11 @@ class Controller{
     // share post detail
     static sharePostPage(req, res){
         const id = req.params.postId;
+        console.log(id);
 
-        Post.findByPk(id)
+        Share.findAll()
         .then(data => {
+            console.log(data);
             res.render('postPage', {data})
         })
         .catch(err => {

@@ -42,6 +42,7 @@ router.post('/H8lumni/home', Controller.addPost)
 router.get('/H8lumni/profiles',Controller.profilePage)
 
 router.get('/H8lumni/shares',Controller.sharesPage)
+router.get('/H8lumni/sharesContent',Controller.sharePostPage)
 router.get('/H8lumni/addShares',Controller.addShares)
 
 
