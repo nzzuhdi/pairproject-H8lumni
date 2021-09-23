@@ -3,13 +3,14 @@ const { sharesPage } = require('../controller/controller')
 const Controller = require('../controller/controller')
 
 router.get('/H8lumni', Controller.landingPage)
-
+router.get('/H8lumni/register', Controller.addUser)
 router.get('/H8lumni/home', Controller.homePage)
+router.post('/H8lumni/home', Controller.addPost)
 
 router.get('/H8lumni/profiles',Controller.profilePage)
 
 router.get('/H8lumni/shares',Controller.sharesPage)
-
+router.get('/H8lumni/addShares',Controller.addShares)
 router.get('/H8lumni/shares/:postId', Controller.sharePostPage)
 
 // router.get('/jobs', Controller.listJob)
