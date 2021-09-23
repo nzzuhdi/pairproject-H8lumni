@@ -2,6 +2,15 @@ const router = require('express').Router()
 const { sharesPage } = require('../controller/controller')
 const Controller = require('../controller/controller')
 
+/*
+===== Auth ====
+*/
+router.get('/login', AuthController.getLogin);
+router.post('/login', AuthController.postLogin);
+router.get('/register', AuthController.getRegister);
+router.post('/register', AuthController.postRegister);
+// ==================================
+
 router.get('/H8lumni', Controller.landingPage)
 router.get('/H8lumni/register', Controller.addUser)
 router.get('/H8lumni/home', Controller.homePage)
