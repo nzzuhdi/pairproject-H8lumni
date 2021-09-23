@@ -1,3 +1,5 @@
+const { Post } = require("../models")
+
 class Controller{
     static landingPage(req,res){
         res.render('landingPage')
@@ -26,8 +28,17 @@ class Controller{
         res.render('addShares')
     }
 
-    static sharePostPage(req,res){
-        res.render('postPage')
+    // share post detail
+    static sharePostPage(req, res){
+        const id = req.params.postId;
+
+        Post.findByPk(id)
+        .then(data => {
+            res.render('postPage', {data})
+        })
+        .catch(err => {
+            res.send(err)
+        });
     }
 }
 

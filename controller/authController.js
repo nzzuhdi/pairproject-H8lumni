@@ -1,6 +1,6 @@
 const hashPassword = require("../helpers/hashPassword");
 const passwordIsMatched = require("../helpers/passwordIsMatched");
-const { User } = require("../models");
+const { User, Profile } = require("../models");
 
 class AuthController {
     static getLogin(req, res) {
@@ -21,13 +21,18 @@ class AuthController {
         .then(data => {
             // check password
             if(passwordIsMatched(password, data[0].password)) {
-                res.redirect("/H8lumni");
+                req.session.userId = data[0].id;
+                req.session.username = data[0].username;
+                req.session.logedIn = true;
+
+                res.redirect("/test");
             } else {
                 res.redirect("/login?errors=wrong_password");
             }
             
         })
         .catch(err => {
+            console.log(err);
             res.redirect("/login?errors=wrong_email");
             // res.send(err);
         });
@@ -38,7 +43,7 @@ class AuthController {
     }
 
     static postRegister(req, res) {
-        const {username, email, password} = req.body;
+        const {username, email, password, age, gender, image, batch} = req.body;
         const input = {
             username,
             email,
@@ -52,12 +57,19 @@ class AuthController {
 
         User.create(input)
         .then(() => {
+
+
             res.redirect("/login");
         })
         .catch(err => {
             console.log(err);
             res.send(err);
         });
+    }
+
+    static logout(req, res) {
+        req.session.destroy();
+        res.redirect("/");
     }
 }
 

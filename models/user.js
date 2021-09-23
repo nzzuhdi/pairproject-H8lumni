@@ -17,12 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     username:  {
       type: DataTypes.STRING,
     validate:{
-      notEmpty: {msg="fill the username~"}
+      notEmpty: {msg:"fill the username~"}
     }},
     email: {
       type: DataTypes.STRING,
     validate:{
-      notEmpty: {msg="pour the title~"}
+      notEmpty: {msg:"pour the title~"}
     }},
     password: DataTypes.STRING,
     role: DataTypes.STRING
