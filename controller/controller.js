@@ -1,3 +1,7 @@
+const { post } = require("../routes")
+const {Post, Profile, User,Share} = require("../models");
+const { Op } = require("sequelize")
+
 class Controller{
     static landingPage(req,res){
         res.render('landingPage')
@@ -8,22 +12,55 @@ class Controller{
     }
 
     static homePage(req,res){
-        res.render('homePage')
+        // let option = {
+        //     include: [User,Profile,Post],
+        // }
+        Post.findAll()
+        .then(data=>{
+            console.log(data);
+            res.render('homePage', {data})
+        })
+        .catch(err =>{
+            res.send(err)
+        })
     }
 
     static addPost(req,res){
-        res.redirect('homePage')
+        const {content} = req.body 
+        Post.create(req.body)
+        .then(()=>{
+            res.redirect('/H8lumni/home')
+        })
+        .catch((err)=>{
+            res.send (err)
+        })
     }
 
     static profilePage(req,res){
         res.render('profiles')
     }
-
+    
     static sharesPage(req,res){
-        res.render('sharesPage')
+        Share.findAll()
+        .then(data=>{
+            res.render('sharesPage',{data})
+        })
+        .catch(err=>{
+            res.send(err)
+        })
     }
     static addShares(req,res){
         res.render('addShares')
+    }
+    static postAddShares(req,res){
+        const{content} = req.body
+        Share.create(req.body)
+        .then(()=>{
+            res.redirect('/H8lumni/shares')
+        })
+      .catch((err)=>{
+          res.send(err)
+      })
     }
 
     static sharePostPage(req,res){

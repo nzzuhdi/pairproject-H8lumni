@@ -17,12 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING,
     validate:{
-      notEmpty: {msg="pour the title~"}
+      notEmpty: {msg:"pour the title~"}
     }},
     content:  {
       type: DataTypes.STRING,
     validate:{
-      notEmpty: {msg="pour the content~"}
+      notEmpty: {msg:"pour the content~"}
     }},
     UserId: DataTypes.INTEGER
   }, {

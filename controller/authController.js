@@ -21,7 +21,7 @@ class AuthController {
         .then(data => {
             // check password
             if(passwordIsMatched(password, data[0].password)) {
-                res.redirect("/H8lumni");
+                res.redirect("/H8lumni/home");
             } else {
                 res.redirect("/login?errors=wrong_password");
             }

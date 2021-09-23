@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const { sharesPage } = require('../controller/controller')
 const Controller = require('../controller/controller')
+const AuthController = require('../controller/authController')
 
 /*
 ===== Auth ====
@@ -20,6 +21,7 @@ router.get('/H8lumni/profiles',Controller.profilePage)
 
 router.get('/H8lumni/shares',Controller.sharesPage)
 router.get('/H8lumni/addShares',Controller.addShares)
+router.post('/H8lumni/addShares',Controller.postAddShares)
 router.get('/H8lumni/shares/:postId', Controller.sharePostPage)
 
 // router.get('/jobs', Controller.listJob)
