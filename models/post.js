@@ -14,8 +14,16 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Post.init({
-    title: DataTypes.STRING,
-    content: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+    validate:{
+      notEmpty: {msg="pour the title~"}
+    }},
+    content:  {
+      type: DataTypes.STRING,
+    validate:{
+      notEmpty: {msg="pour the content~"}
+    }},
     UserId: DataTypes.INTEGER
   }, {
     sequelize,
