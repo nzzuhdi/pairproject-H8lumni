@@ -12,8 +12,14 @@
     <a href="/h8lumni/profiles">profiles</a>
     <a href="/h8lumni/shares">shares</a>
     <br><br>
-    <label for="username">Whatsup ur day?</label>
-    <input type="text"><button>Post!</button>
+    <form action="/H8lumni/home" method="POST">
+        <label for="content">Whatsup ur day?</label>
+        <input type="text" value="" name="content"><button type="submit" value="submit">Post!</button>
+    </form>
+    <% data.forEach(el => {%>
+
+       <p> <%= el.content %>
+    <%}); %> </p><br>
     <br>
     <br>
 </body>

@@ -14,10 +14,26 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Profile.init({
-    fullName: DataTypes.STRING,
-    age: DataTypes.INTEGER,
-    gender: DataTypes.STRING,
-    batch: DataTypes.STRING,
+    fullName: {
+      type: DataTypes.STRING,
+    validate:{
+      notEmpty: {msg:"fill the name~"}
+    }},
+    age:  {
+      type: DataTypes.INTEGER,
+    validate:{
+      notEmpty: {msg:"fill the age~"}
+    }},
+    gender:  {
+      type: DataTypes.STRING,
+    validate:{
+      notEmpty: {msg:"male or"}
+    }},
+    batch:  {
+      type: DataTypes.STRING,
+    validate:{
+      notEmpty: {msg:"pour the title~"}
+    }},
     image: DataTypes.STRING,
     UserId: DataTypes.INTEGER
   }, {

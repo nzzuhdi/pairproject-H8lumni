@@ -7,9 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Share Something Here</h1>
-    <textarea name="Shares" id="" cols="30" rows="10"></textarea>
+    <h1>Share Something Here</h1><br>
+    <form action="/H8lumni/addShares" method="POST">
+    <label for="title">Title:</label>
+    <input type="text" name="title" id=""><br><br>
+    <textarea name="content" id="" cols="30" rows="10"></textarea>
     <br>
-    <button>Add</button>
+    <button type="submit" value="submit">Add</button>
+</form>
 </body>
 </html>

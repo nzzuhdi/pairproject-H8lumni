@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { sharesPage } = require('../controller/controller');
 const Controller = require('../controller/controller');
 const AuthController = require('../controller/authController');
 
@@ -44,7 +43,6 @@ router.get('/H8lumni/profiles',Controller.profilePage)
 
 router.get('/H8lumni/shares',Controller.sharesPage)
 router.get('/H8lumni/addShares',Controller.addShares)
-router.get('/H8lumni/shares/post', Controller.sharePostPage)
 
 
 // router.use(isLogedIn);
@@ -52,8 +50,10 @@ router.get('/H8lumni/shares/post', Controller.sharePostPage)
 router.get('/test', (req, res) => { res.render("test")});
 router.get('/profile/:username', (req, res) => { res.render("profile") });
 router.get('/profile/:username/edit', (req, res) => { res.render("profile/edit") });
-// ==================================
+// ===========
 
+router.post('/H8lumni/addShares',Controller.postAddShares)
+router.get('/H8lumni/shares/:postId', Controller.sharePostPage)
 
 // router.get('/jobs', Controller.listJob)
 // router.use('/jobs', jobRoute)

@@ -25,7 +25,7 @@ class AuthController {
                 req.session.username = data[0].username;
                 req.session.logedIn = true;
 
-                res.redirect("/test");
+                res.redirect("/H8lumni/home");
             } else {
                 res.redirect("/login?errors=wrong_password");
             }

@@ -17,9 +17,15 @@
             <tr>
                 No
             </tr>
-            <tr>linkShare</tr>
+            <tr>Title</tr>
             <tr>Alumnus</tr>
         </thead>
+        <tbody>
+            <% data.forEach(el => {%>
+                <td><%= el.content %></td>
+                
+             <%}); %> <br>
+        </tbody>
 
     </table>
 </body>
