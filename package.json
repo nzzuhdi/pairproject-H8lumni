@@ -10,5 +10,24 @@
   },
   "devDependencies": {
     "sequelize-cli": "^6.2.0"
-  }
+  },
+  "name": "pairproject-H8lumni",
+  "description": "Tugas pp phase 1\r tes git branch",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nzzuhdi/pairproject-H8lumni.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nzzuhdi/pairproject-H8lumni/issues"
+  },
+  "homepage": "https://github.com/nzzuhdi/pairproject-H8lumni#readme"
 }
