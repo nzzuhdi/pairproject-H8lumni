@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const hashPassword = require('../helpers/hashPassword');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -19,17 +20,59 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     username:  {
       type: DataTypes.STRING,
-    validate:{
-      notEmpty: {msg:"fill the username~"}
-    }},
+      validate:{
+        notEmpty: { msg:"username required"},
+        isNotExist(value) {
+          User.findOne({
+            where: {
+              username: value
+            }
+          })
+          .then(data => {
+            if(data) {
+              throw new Error('email already used');
+            } 
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        }
+      }
+    },
     email: {
       type: DataTypes.STRING,
-    validate:{
-      notEmpty: {msg:"pour the title~"}
-    }},
-    password: DataTypes.STRING,
+      validate:{
+        notEmpty: {msg:"email required"},
+        isNotExist(value) {
+          User.findOne({
+            where: {
+              email: value
+            }
+          })
+          .then(data => {
+            if(data) {
+              throw new Error('email already used');
+            } 
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        }
+      }
+    },
+    password: {
+        type: DataTypes.STRING,
+        validate:{
+        notEmpty: { msg:"password required" }
+      }
+    },
     role: DataTypes.STRING
   }, {
+    hooks: {
+      beforeCreate: (instance, options) => {
+        instance.password = hashPassword(instance.password);
+      }
+    },
     sequelize,
     modelName: 'User',
   });

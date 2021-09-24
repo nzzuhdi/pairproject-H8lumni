@@ -49,29 +49,32 @@
       <!-- <div class="container mt-5"> -->
         <form class="form-signin mt-5" action="/register" method="POST">
         <h1 class="h3 mb-3 font-weight-normal">Register New Account</h1>
+
+        <div class="form-group">
+            <label for="username">Username</label> <% if(errors.username) { %> <span class="text-danger ml-4 float-right"><%= (errors.msg[0]) ? msg[0] : "required" %></span> <% } %>
+            <input type="text" id="username" name="username" class="form-control <% if(errors.username) { %>is-invalid<% } %>" placeholder="Username" autofocus>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Email address</label> <% if(errors.email) { %> <span class="text-danger ml-4 float-right"><%= (errors.msg[1]) ? msg[1] : "required" %></span> <% } %>
+            <input type="email" id="inputEmail" name="email" class="form-control <% if(errors.email) { %>is-invalid<% } %>" placeholder="Email address">
+        </div>
+
+        <div class="form-group">
+          <label for="inputPassword">Password</label> <% if(errors.password) { %> <span class="text-danger ml-4 float-right">required</span> <% } %>
+          <input type="password" id="inputPassword" name="password" class="form-control <% if(errors.password) { %>is-invalid<% } %>" placeholder="Password">
+        </div>
+
         
-        <div class="form-group">
-          <label for="fullname">Full Name</label>
-          <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full Name" required autofocus>
-        </div>
+        <h1 class="h3 mb-3 font-weight-normal mt-5">User Information</h1>
 
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
-        </div>
-        <div class="form-group">
-            <label for="inputEmail">Email address</label>
-            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required>
-        </div>
-
-        <div class="form-group">
-          <label for="inputPassword">Password</label>
-          <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-        </div>
+          <label for="fullname">Full Name</label> <% if(errors.fullname) { %> <span class="text-danger ml-4 float-right">required</span> <% } %>
+          <input type="text" id="fullname" name="fullname" class="form-control <% if(errors.fullname) { %>is-invalid<% } %>" placeholder="Full Name" autofocus>
+        </div> 
       
-        <!-- <div class="form-group">
-            <label for="age">Age</label>
-            <input type="number" id="age" name="age" class="form-control" placeholder="" required style="width: 150px;">
+        <div class="form-group">
+            <label for="age">Age</label> <% if(errors.age) { %> <span class="text-danger ml-4 float-right">required</span> <% } %>
+            <input type="number" id="age" name="age" class="form-control <% if(errors.age) { %>is-invalid<% } %>" placeholder="" style="width: 150px;">
         </div>
 
         <div class="form-group">
@@ -92,16 +95,17 @@
 
         <div class="form-group">
             <label for="image">Profile Image URL</label>
-            <input type="text" id="image" name="image" class="form-control" placeholder="" required>
+            <input type="text" id="image" name="image" class="form-control" placeholder="">
         </div>
 
         <div class="form-group">
-            <label for="batch">Batch</label>
-            <input type="number" id="batch" name="batch" class="form-control" placeholder="batch" required>
-        </div> -->
+            <label for="batch">Batch</label> <% if(errors.batch) { %> <span class="text-danger ml-4 float-right">required</span> <% } %>
+            <input type="number" id="batch" name="batch" class="form-control <% if(errors.batch) { %>is-invalid<% } %>" placeholder="batch">
+        </div>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         </form>
     <!-- </div> -->
 
-<%- include("../partials/footer") %>
+  </body>
+  </html>

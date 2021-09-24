@@ -44,10 +44,26 @@ class Controller{
     }
     
     static sharesPage(req,res){
-        Share.findAll({
+        const search = req.query.search;
+        const sort = req.query.sort;
+        console.log(req.query);
+        let opt = {
             include: User,
-            order: [["createdAt", "DESC"]]
-        })
+            order: [["createdAt", "DESC"]],
+            where: {}
+        }
+
+        if(search) {
+            opt.where.title = { [Op.iLike]: `%${search}%` };
+        }
+
+        if(sort === "title") {
+            opt.order = [["title", "ASC"]]
+        } else if(sort === "mostRecent") {
+            opt.order = [["createdAt", "DESC"]]
+        }
+
+        Share.findAll(opt)
         .then(data=>{
             res.render('sharesPage',{data})
         })
@@ -168,9 +184,6 @@ class Controller{
         .catch(err => {
             res.send(err);
         })
-
-
-       
     }
 
 

@@ -38,17 +38,17 @@
         
         <div class="form-group">
             <label for="fullname">Full Name</label>
-            <input type="text" id="fullname" name="fullname" class="form-control" value="<%= data.Profile.fullname %> " required autofocus>
+            <input type="text" id="fullname" name="fullname" class="form-control" value="<%= data.Profile.fullname %>" required autofocus>
         </div>
         <div class="form-group">
             <label for="inputEmail">Email address</label>
-            <input type="email" id="inputEmail" name="email" class="form-control" value="<%= data.email %> " required>
+            <input type="email" id="inputEmail" name="email" class="form-control" value="<%= data.email %>" required>
         </div>
 
         
         <div class="form-group">
             <label for="age">Age</label>
-            <input type="number" id="age" name="age" class="form-control" placeholder="" required style="width: 150px;">
+            <input type="number" id="age" name="age" class="form-control" value="<%= (data.Profile.age) ? data.Profile.age : "" %>" placeholder="" required style="width: 150px;">
         </div>
 
         <div class="form-group">
@@ -69,12 +69,12 @@
 
         <div class="form-group">
             <label for="image">Profile Image URL</label>
-            <input type="text" id="image" name="image" class="form-control" placeholder="" required>
+            <input type="text" id="image" name="image" class="form-control" value="<%= (data.Profile.image) ? data.Profile.image : "" %>" placeholder="" required>
         </div>
 
         <div class="form-group">
             <label for="batch">Batch</label>
-            <input type="number" id="batch" name="batch" class="form-control" placeholder="batch" required>
+            <input type="number" id="batch" name="batch" class="form-control" value="<%= (data.Profile.batch) ? data.Profile.batch : "" %>" placeholder="batch" required>
         </div>
 
         <button class="btn btn-lg btn-primary btn-block mt-5" type="Save">Update Profile</button>

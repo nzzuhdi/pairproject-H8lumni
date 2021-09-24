@@ -18,12 +18,12 @@ module.exports = (sequelize, DataTypes) => {
     fullname: {
       type: DataTypes.STRING,
     validate:{
-      notEmpty: {msg:"fill the name~"}
+      notEmpty: {msg:"fullname required"}
     }},
     age:  {
       type: DataTypes.INTEGER,
     validate:{
-      notEmpty: {msg:"fill the age~"}
+      notEmpty: {msg:"age required"}
     }},
     gender:  {
       type: DataTypes.STRING,
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     batch:  {
       type: DataTypes.STRING,
     validate:{
-      notEmpty: {msg:"pour the title~"}
+      notEmpty: {msg:"batch required"}
     }},
     image: DataTypes.STRING,
     UserId: DataTypes.INTEGER

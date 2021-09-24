@@ -27,7 +27,9 @@
                    
         </div>
 
-        <div>
+        <div class="container mt-5">
+            <h3>Total Share post: <%= data.Sh %> </h3>
+
             <table>
                 <tr>
                     <th>No</th>
@@ -40,7 +42,7 @@
                     <td><%= index + 1%></td>
                     <td><%= share.title %></td>
                     <td><%= share.createdAt %></td>
-                    <td><a href="/shares/<%= share.id %>/edit">edit</a><a href="/shares/<%= share.id %>/delete">delete</a></td>
+                    <td><a href="/shares/<%= share.id %>/edit" class="mr-3 btn btn-sm btn-primary">edit</a><a href="/shares/<%= share.id %>/delete" class="mr-1 btn btn-sm btn-danger">delete</a></td>
                 </tr>
                 <% }) %>
             </table>
