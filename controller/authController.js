@@ -15,9 +15,7 @@ class AuthController {
             where: { email },
             include: Profile
         })
-        /*
-        TODO: set email constrain to unique
-        */
+        
         .then(data => {
             // check password
             if(passwordIsMatched(password, data[0].password)) {
@@ -56,9 +54,9 @@ class AuthController {
             };
         
         if(err) {
-            if(err.includes("username already used")) {
+            if(err.includes("username must be unique")) {
                 errors.msg[0] = "username already used";
-            } else if(err.includes("email already used")) {
+            } else if(err.includes("email must be unique")) {
                 errors.msg[1] = "email already used";
             }
         }
@@ -104,13 +102,14 @@ class AuthController {
             }
 
             console.log(err);
-            if(err.name === "SequelizeValidationError") {
+            if(err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
                 err = err.errors.map(e => {
                     return e.message;
                 });
 
                 res.redirect(`/register?err=${err}`);
             }
+
             res.send(err);
         });
     }

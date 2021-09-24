@@ -21,43 +21,13 @@ module.exports = (sequelize, DataTypes) => {
     username:  {
       type: DataTypes.STRING,
       validate:{
-        notEmpty: { msg:"username required"},
-        isNotExist(value) {
-          User.findOne({
-            where: {
-              username: value
-            }
-          })
-          .then(data => {
-            if(data) {
-              throw new Error('email already used');
-            } 
-          })
-          .catch(err => {
-            console.log(err);
-          });
-        }
+        notEmpty: { msg:"username required"}
       }
     },
     email: {
       type: DataTypes.STRING,
       validate:{
-        notEmpty: {msg:"email required"},
-        isNotExist(value) {
-          User.findOne({
-            where: {
-              email: value
-            }
-          })
-          .then(data => {
-            if(data) {
-              throw new Error('email already used');
-            } 
-          })
-          .catch(err => {
-            console.log(err);
-          });
-        }
+        notEmpty: {msg:"email required"}
       }
     },
     password: {
